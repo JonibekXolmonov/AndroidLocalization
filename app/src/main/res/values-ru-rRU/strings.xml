@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">адресацияандроида</string>
+    <string name="lan_english">английский</string>
+    <string name="lan_russian">русский</string>
+    <string name="lan_uzbek">узбекский</string>
+
+    <plurals name="my_cats">
+        <item quantity="one">у меня %s кот</item>
+        <item quantity="few">у меня %s кота</item>
+        <item quantity="many">у меня %s кошек</item>
+    </plurals>
+</resources>
