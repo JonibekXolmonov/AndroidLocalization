@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 
+internal var sharedPreferences: SharedPreferences? = null
+
 class PrefsManager private constructor(private val context: Context) {
-    private var sharedPreferences: SharedPreferences? = null
+
 
     companion object {
         @SuppressLint("StaticFieldLeak")

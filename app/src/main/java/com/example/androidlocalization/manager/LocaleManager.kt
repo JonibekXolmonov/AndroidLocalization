@@ -8,13 +8,12 @@ import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.annotation.RequiresApi
 import java.util.*
 import kotlin.collections.LinkedHashSet
 
-class LocaleManager(context: Context) {
-
-    private val prefs: SharedPreferences
+class LocaleManager(context: Context?) {
 
     fun setLocale(c: Context): Context {
         return update(c, language)
@@ -35,13 +34,13 @@ class LocaleManager(context: Context) {
     }
 
     val language: String?
-        get() = prefs.getString(LANGUAGE_KEY, LANGUAGE_ENGLISH)
+        get() = sharedPreferences?.getString(LANGUAGE_KEY, LANGUAGE_ENGLISH)
 
     @SuppressLint("ApplySharedPref")
     private fun persistLanguage(language: String) {
         // use commit() instead of apply(), because sometimes we kill the application process
         // immediately that prevents apply() from finishing
-        prefs.edit().putString(LANGUAGE_KEY, language).commit()
+        sharedPreferences!!.edit().putString(LANGUAGE_KEY, language).commit()
     }
 
     private fun updateResources(context: Context, language: String?) {
@@ -78,6 +77,7 @@ class LocaleManager(context: Context) {
         const val LANGUAGE_RUSSIAN = "ru"
         const val LANGUAGE_UZBEK = "uz"
         private const val LANGUAGE_KEY = "language_key"
+
         fun getLocale(res: Resources): Locale {
             val config = res.configuration
             return if (isAtLeastVersion(Build.VERSION_CODES.N)) config.locales[0] else config.locale
@@ -89,6 +89,6 @@ class LocaleManager(context: Context) {
     }
 
     init {
-        prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 }

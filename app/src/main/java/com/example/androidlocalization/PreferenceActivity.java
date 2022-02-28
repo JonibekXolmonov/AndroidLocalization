@@ -29,9 +29,9 @@ public class PreferenceActivity extends AppCompatActivity {
         b_save.setOnClickListener(v -> {
             String email = et_email.getText().toString();
             PrefsManager prefsManager = PrefsManager.Companion.getInstance(this);
-            prefsManager.saveData("username", "JonibekXolmonov");
+            //prefsManager.saveData("username", "JonibekXolmonov");
             //prefsManager.removeData("username");
-            tv_saved_data.setText(prefsManager.getData("username"));
+            //tv_saved_data.setText(prefsManager.getData("username"));
         });
     }
 }
